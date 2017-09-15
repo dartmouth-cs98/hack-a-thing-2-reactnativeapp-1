@@ -1,23 +1,43 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { AppRegistry, Image, View, Text, TextInput} from 'react-native';
 
-export default class App extends React.Component {
+export default class Journal extends Component {
+    constructor(props) {
+    super(props);
+    this.state = {text: ''};
+  }
+
   render() {
+    let pic = {
+      uri: 'https://www.teachingenglish.org.uk/sites/teacheng/files/styles/large/public/images/class_journals_iStock_000021675732XSmall.jpg'
+    };
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <View style={{
+          padding: 40,
+          flex: 1,
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
+      
+      <Image source={pic} style={{width: 300, height: 300}}/>
+      <Text> </Text>
+      <Text>Journal App</Text>
+
+      <TextInput
+          style={{height: 40}}
+          placeholder="Enter your entry here!"
+          onChangeText={(text) => this.setState({text})}
+        />
+
+        <Text style={{padding: 10, fontSize: 20}}>
+        </Text>
+
+
       </View>
+
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// skip this line if using Create React Native App
+AppRegistry.registerComponent('Journal_App', () => Journal);
