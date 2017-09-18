@@ -8,6 +8,8 @@ import {
   ScrollView
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { SearchBar } from 'react-native-elements'
+
 var customData = require("../data/customData.json");
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
 export default class Chats extends React.Component {
@@ -41,7 +43,7 @@ export default class Chats extends React.Component {
               {person.first_name}
             </Text>
             <View style={styles.dateContainer}>
-              <Text style={{ fontWeight: "400", color: "#666", fontSize: 12 }}>
+              <Text style={{ fontWeight: "400", color: "#636", fontSize: 12 }}>
                 {person.date}
               </Text>
             </View>
@@ -65,11 +67,16 @@ export default class Chats extends React.Component {
 
           <Icon name="edit" color="#e68a00" size={23} style={{ padding: 5 }} />
         </View>
+
         <View style={styles.middleContainer}>
           <Text style={styles.mainText}>Broadcast Lists</Text>
 
           <Text style={styles.mainText}>New Group</Text>
         </View>
+
+        <SearchBar
+          placeholder='Type Here...' />
+
         <ScrollView>
           <ListView
             initialListSize={5}
@@ -125,6 +132,16 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   middleContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: "#d6d7da",
+    paddingBottom: 6,
+    paddingLeft: 3,
+    paddingRight: 3
+  },
+  searchContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     borderRadius: 4,
