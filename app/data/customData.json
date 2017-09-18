@@ -76,7 +76,7 @@
     "first_name": "James",
     "mobile": false,
     "message": "I will never walk alone",
-    "date": "27-Dec-2016",
+    "date": "12/27/2016",
     "time": "9:29 PM",
     "image": "https://randomuser.me/api/portraits/women/6.jpg"
   },
@@ -85,7 +85,7 @@
     "first_name": "Matthew",
     "mobile": true,
     "message": "Got it",
-    "date": "31-Dec-2016",
+    "date": "12/31/2016",
     "time": "7:43 PM",
     "image": "https://randomuser.me/api/portraits/men/18.jpg"
   }
