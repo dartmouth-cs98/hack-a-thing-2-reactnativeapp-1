@@ -1,6 +1,7 @@
 ## What we built?
-- We put together a chat app with some basic functions (camera, chat list, calls, contacts). 
-- We mainly worked on the frontend of the app. 
+- We put together a chat app with some basic functions (camera, chat list, call list, contacts).
+- The chap app is based on Whatsapp.
+- We mainly worked on the frontend of the app and used customized data.
 ## Who did what?
 - Nina: implemented calls, chats camera and navigation components
 - Imanol: basic React tutorial, search component
