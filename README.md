@@ -1,15 +1,8 @@
 ## What we built?
-- We put together a chat app with some basic functions (camera, chat list, call list, contacts).
 - The chap app is based on Whatsapp.
-- We mainly worked on the frontend of the app and used customized data.
+- We continued from the previous work and added the backend using firebase.
 ## Who did what?
-- Nina: implemented calls, chats camera and navigation components
-- Imanol: basic React tutorial, search component
+- Nina: set up firebase and implemented the backend for messaging; implemented the frontend for messaging screen
 ## What did we learn?
-- Basic JS and React
-- The component framework
-- Expo development environment
-- Modules such as react-navigation, camera, react-native-vetors
+
 ## What was hard?
-- Version 5 of npm created a lot of annoying bugs, made it difficult to simulate our app.
-- Handling user events
