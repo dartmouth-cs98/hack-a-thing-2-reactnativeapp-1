@@ -50,11 +50,13 @@ class ChatBox extends Component {
   }
   componentDidMount() {
     Backend.loadMessages(message => {
-      this.setState(previousState => {
-        return {
-          messages: GiftedChat.append(previousState.messages, message)
-        };
-      });
+      if (message.user.name === this.props.name) {
+        this.setState(previousState => {
+          return {
+            messages: GiftedChat.append(previousState.messages, message)
+          };
+        });
+      }
     });
   }
   componentWillUnmount() {
@@ -138,43 +140,10 @@ class ChatBox extends Component {
                 Backend.sendMessage(message);
               }}
               user={{
-                _id: Backend.getUid(),
+                _id: this.props.name,
                 name: this.props.name
               }}
-            -/>
-          </View>
-          <View style={styles.footerContainer}>
-            <View style={styles.inputContainer}>
-              <TouchableOpacity>
-                <Icon
-                  name="mood"
-                  color="#C5C6C7"
-                  size={27}
-                  style={{ padding: 5, marginLeft: 5 }}
-                />
-              </TouchableOpacity>
-              <TextInput
-                placeholder="Type a message..."
-                placeholderTextColor="#EDEDED"
-                selectionColor="white"
-                onChangeText={msgTxt => this.setState({ msgTxt })}
-                style={styles.input}
-                autoCapitalize="none"
-                autoCorrect={false}
-                returnKeyType="next"
-              />
-            </View>
-            <View style={styles.sendIconContainer}>
-              <TouchableOpacity onPress={() => console.log("message entered")}>
-                <Icon
-                  name="send"
-                  color="#fff"
-                  size={25}
-                  style={styles.icon}
-                  resizeMode="contain"
-                />
-              </TouchableOpacity>
-            </View>
+            />
           </View>
         </View>
       </MenuContext>
@@ -207,7 +176,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "#075e54",
+    backgroundColor: "#d98cb3",
     alignItems: "center",
     paddingTop: 5,
     paddingRight: 5
