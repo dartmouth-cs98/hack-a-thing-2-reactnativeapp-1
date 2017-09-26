@@ -7,12 +7,25 @@ import ChatList from "./ChatList";
 import NavigationExperimental from "react-native-deprecated-custom-components";
 
 export default class Chats extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { userName: 'Default Username' };
+  }
+
+  setUserNameFromChatList = (input) => {
+    this.setState({ userName: input });
+  }
+  
   _renderScene(route, navigator) {
     const { state, actions } = this.props;
     const routeId = route.id;
 
     if (routeId === "chatlist") {
-      return <ChatList {...this.props} navigator={navigator} />;
+      return <ChatList 
+        {...this.props} 
+        navigator={navigator} 
+        callback={this.setUserNameFromChatList}
+      />;
     } else if (routeId === "chatbox") {
       return (
         <ChatBox
@@ -20,6 +33,7 @@ export default class Chats extends Component {
           image={route.image}
           name={route.name}
           navigator={navigator}
+          userName={this.state.userName}
         />
       );
     }

@@ -2,6 +2,7 @@ import React from "react";
 import {
   StyleSheet,
   Text,
+  TextInput,
   View,
   ListView,
   Image,
@@ -9,6 +10,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import Prompt from "react-native-prompt";
 var customData = require("../data/customData.json");
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
 export default class ChatList extends React.Component {
@@ -16,7 +18,8 @@ export default class ChatList extends React.Component {
     super(props);
     this.state = {
       peopleDataSource: ds.cloneWithRows([]),
-      loaded: false
+      loaded: false,
+      promptVisible: false
     };
   }
   componentDidMount() {
@@ -24,6 +27,27 @@ export default class ChatList extends React.Component {
       peopleDataSource: ds.cloneWithRows(customData),
       loaded: true
     });
+  }
+
+  addUser(personName) {
+    let numPeople = this.state.peopleDataSource.getRowCount();
+    customData.push({
+        "id": numPeople + 1,
+        "first_name": personName,
+        "mobile": false,
+        "message": "",
+        "date": "",
+        "time": "",
+        "image": "https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
+    });
+    this.setState({ 
+      peopleDataSource: ds.cloneWithRows(customData),
+      promptVisible: false
+    });
+  }
+
+  showPrompt = () => {
+    this.setState({ promptVisible: true });
   }
 
   renderPersonRow(person) {
@@ -74,9 +98,26 @@ export default class ChatList extends React.Component {
         <View style={styles.headerContainer}>
           <Text style={styles.leftHeaderContainer}>Edit</Text>
 
-          <Text style={styles.logoText}>Chats</Text>
+          <TextInput
+            style={styles.userNameText}
+            onChangeText={(text) => this.props.callback(text)}
+            placeholder='Default'
+          />
 
-          <Icon name="edit" color="#e68a00" size={23} style={{ padding: 5 }} />
+          <Icon.Button 
+            name="edit"
+            color="#e68a00" 
+            size={23} 
+            style={{ padding: 0 }}
+            onPress={this.showPrompt}
+          />
+
+          <Prompt
+            title="Add user"
+            visible={ this.state.promptVisible }
+            onCancel={ () => this.setState({ promptVisible: false }) }
+            onSubmit={ (value) => this.addUser(value) } 
+          />
         </View>
         <View style={styles.middleContainer}>
           <Text style={styles.mainText}>Broadcast Lists</Text>
@@ -126,7 +167,8 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 9
   },
-  logoText: {
+  userNameText: {
+    width: 200,
     color: "white",
     fontWeight: "bold",
     fontSize: 20,

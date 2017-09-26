@@ -50,7 +50,9 @@ class ChatBox extends Component {
   }
   componentDidMount() {
     Backend.loadMessages(message => {
-      if (message.user.name === this.props.name) {
+      if (this.props.userName === 'Default Username'
+        || (message.user.from === this.props.userName && message.user.to === this.props.name)
+        || (message.user.from === this.props.name && message.user.to === this.props.userName)) {
         this.setState(previousState => {
           return {
             messages: GiftedChat.append(previousState.messages, message)
@@ -140,8 +142,9 @@ class ChatBox extends Component {
                 Backend.sendMessage(message);
               }}
               user={{
-                _id: this.props.name,
-                name: this.props.name
+                _id: this.props.userName,
+                from: this.props.userName,
+                to: this.props.name
               }}
             />
           </View>

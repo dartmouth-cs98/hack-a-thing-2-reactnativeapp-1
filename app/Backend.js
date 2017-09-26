@@ -44,7 +44,8 @@ class Backend {
         createdAt: new Date(message.createdAt),
         user: {
           _id: message.user._id,
-          name: message.user.name
+          from: message.user.from,
+          to: message.user.to
         }
       });
     };
